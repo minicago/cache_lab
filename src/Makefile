@@ -7,4 +7,5 @@ step2:
 clean:
 	-rm csim \
 	 info \
-	 trans.o
+	 trans.o \
+	 tracegen
