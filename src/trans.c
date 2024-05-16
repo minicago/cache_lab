@@ -8,14 +8,18 @@
 #include "cachelab.h"
 int is_transpose(int M, int N, int A[N][M], int B[M][N]);
 char transpose_submit_desc[] = "Transpose submission";  //请不要修改“Transpose_submission”
-
+#define min(a,b) (((a)<(b))?(a):(b))
 
 void transpose_submit(int M, int N, int A[N][M], int B[M][N])
 {
 
 //                          请在此处添加代码
 //*************************************Begin********************************************************
-
+    for (int i = 0; i < N; i += 4)
+        for (int j = 0; j < M; j += 4)
+            for (int k = 0; k < min(4, N-i); k++)
+                for (int s = 0; s < min(4, M-j); s++)
+                    B[j + s][i + k] = A[i + k][j + s];
 
 
 
